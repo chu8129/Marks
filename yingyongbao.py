@@ -43,6 +43,7 @@ for categoryid in (100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,1
 			jdata=json.loads(data)
 			if jdata.get('obj'):
 				for i in range(0,len(jdata.get('obj'))):
+					mycategory=apporgame=1 and 'app' or 'game'
 					description=jdata.get('obj')[i]['description']
 					flag=jdata.get('obj')[i]['flag']
 					fileSize=jdata.get('obj')[i]['fileSize']
@@ -65,7 +66,7 @@ for categoryid in (100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,1
 					averageRating=str(jdata.get('obj')[i]['appRatingInfo']['averageRating'])
 					ratingCount=str(jdata.get('obj')[i]['appRatingInfo']['ratingCount'])
 
-					logging.info(('%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s'%(categoryName,description,flag,fileSize,authorId,categoryId,pkgName,apkUrl,appName,appId,versionCode,iconUrl,versionName,appDownCount,averageRating,editorIntro,apkMd5,authorName,apkPublishTime,averageRating,ratingCount)).encode('utf-8'))
+					logging.info(('%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s'%(mycategory,categoryName,description,flag,fileSize,authorId,categoryId,pkgName,apkUrl,appName,appId,versionCode,iconUrl,versionName,appDownCount,averageRating,editorIntro,apkMd5,authorName,apkPublishTime,averageRating,ratingCount)).encode('utf-8'))
 			elif response==0 :
 				pass
 			else:
