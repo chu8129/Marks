@@ -66,7 +66,7 @@ for categoryid in (100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,1
 					averageRating=str(jdata.get('obj')[i]['appRatingInfo']['averageRating'])
 					ratingCount=str(jdata.get('obj')[i]['appRatingInfo']['ratingCount'])
 
-					logging.info(('%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s'%(mycategory,categoryName,description,flag,fileSize,authorId,categoryId,pkgName,apkUrl,appName,appId,versionCode,iconUrl,versionName,appDownCount,averageRating,editorIntro,apkMd5,authorName,apkPublishTime,averageRating,ratingCount)).encode('utf-8'))
+					logging.info(('%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%sq|w%s'%(mycategory,categoryName,description,flag,fileSize,authorId,categoryId,pkgName,apkUrl,appName,appId,versionCode,iconUrl,versionName,appDownCount,averageRating,editorIntro,apkMd5,authorName,apkPublishTime,averageRating,ratingCount)).encode('utf-8'))
 			elif response==0 :
 				pass
 			else:
