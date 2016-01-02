@@ -1,21 +1,15 @@
-import urllib2
-import re
-import threading
-import time
-import random
+import urllib2,re,threading,time,random,traceback
 from lxml import etree
 from multiprocessing.dummy import Pool 
 import logging
-logging.basicConfig(level=logging.DEBUG, format="[%(asctime)s] %(name)s:%(levelname)s: %(message)s")
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s>>%(filename)s>>line:%(lineno)d>>%(levelname)s %(message)s')
 import Queue
 
 proxy_urls=[]
-
-for num in xrange(1,300):
+for num in xrange(1,2):
 	proxy_urls.append('http://www.xicidaili.com/nn/%s'%num)
 
 proxy_list=[]
-
 cqueue=Queue.Queue()
 
 class get_proxy():
@@ -23,14 +17,25 @@ class get_proxy():
 	def get_proxy(self,proxy_url):
 		logging.debug('proxy target url: '+proxy_url)
 		try:
-			response=urllib2.urlopen(urllib2.Request(url=proxy_url,headers={"Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8","Accept-Encoding":"gzip, deflate, sdch","Accept-Language":"en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4","Connection":"keep-alive","host":"www.xicidaili.com","User-Agent":"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:34.0) Gecko/20100101 Firefox/34.0"}))
+			response=urllib2.urlopen(
+				urllib2.Request(url=proxy_url,
+					headers={"Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+						"Accept-Encoding":"gzip, deflate, sdch",
+						"Accept-Language":"en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4",
+						"Connection":"keep-alive",
+						"host":"www.xicidaili.com",
+						"User-Agent":"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:34.0) Gecko/20100101 Firefox/34.0"
+						}))
 		except Exception,e:
-			logging.debug('fial,'+e.message)
+			logging.debug('fail,'+e.message)
 			return
+		logging.debug('start going to analysis data from {0}!!..'.format(proxy_url))
 		response_data=response.read()
 		lxml_response=etree.HTML(response_data)
-		proxys=lxml_response.xpath('//table[@id="ip_list"]/tbody/tr')
-		for iproxy in xrange(1,len(proxys)):
+		proxys=lxml_response.xpath('//table[@id="ip_list"]/tr')
+		logging.debug('{0}s proxy in {1}!!..'.format(len(proxys),proxy_url))
+		for iproxy in proxys:
+			if len(iproxy.xpath('td'))==0:continue
 			ip=iproxy.xpath('td')[2].text
 			port=iproxy.xpath('td')[3].text
 			addr=iproxy.xpath('td')[5].text
@@ -38,7 +43,7 @@ class get_proxy():
 			self.check_proxy(ip+':'+port)
 		
 	def __init__(self,proxy_url):
-		self.timeout=5
+		self.timeout=10
 		self.testurl2='http://1111.ip138.com/ic.asp'
 		self.testurl='http://www.baidu.com'
 		self.testStr='030173'
@@ -51,17 +56,18 @@ class get_proxy():
 		urllib2.install_opener(opener)
 		try:
 			response=urllib2.urlopen(self.testurl2,timeout=self.timeout)
-			print response.code
-			response_data=response.read()+response.headers
+			response_data=response.read()
 			if response.code==200:
 				logging.debug('data: '+response_data)
 				logging.debug(proxy+':pass')
 				cqueue.put(proxy)
 			else:
 				logging.debug(proxy+':fail')
+#		except urllib2.timeout:
+#			logging.debug(proxy+':fail')
 		except Exception,e:
 			logging.debug(proxy+':fail')
-			logging.debug(e.message)
+			traceback.print_exc()
 def proxy(num):
 #	get_proxy(proxy_urls[1])
 	pool=Pool(num)
@@ -83,3 +89,4 @@ def get_page(url,proxylist,sleeptime=0,timeout=10):
 	time.sleep(sleeptime)
 if __name__=='__main__':
 	proxy(4)
+#	get_proxy(proxy_urls[0])
