@@ -9,3 +9,9 @@ Run rm -rf .git/modules/path_to_submodule (no trailing slash).
 Commit git commit -m "Removed submodule "
 Delete the now untracked submodule files rm -rf path_to_submodule
 ```
+
+
+```
+增加master分支
+git submodule add  --force -b master git@git.***/commonproto.git commonproto
+```
