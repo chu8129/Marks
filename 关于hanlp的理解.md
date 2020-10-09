@@ -11,3 +11,13 @@
 ```
 代码中，各个模型的地址ALL，是运行时加载的，关键字:exec
 ```
+
+```
+加载large-albert流程
+save_dir https://file.hankcs.com/hanlp/cws/large_cws_albert_base_20200828_011451.zip
+metapath /Users/qw/.hanlp/cws/large_cws_albert_base_20200828_011451/meta.json
+meta {'class_path': 'hanlp.components.tok.TransformerTokenizer', 'hanlp_version': '2.0.0-alpha.50'}
+cls hanlp.components.tok.TransformerTokenizer
+load config.json
+>>>
+```
