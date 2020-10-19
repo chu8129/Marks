@@ -8,4 +8,6 @@
   drop_out
 202010：
   如果使用Word2VecEmbedding/StringWord2VecEmbedding，则是concat模式
+202010
+  hanlp的词性很喜欢embedding，不过ctb6-pos-rnn < 100M，fasttext就是原始的3G了
 ```
