@@ -7,5 +7,5 @@
   blstm
   drop_out
 202010：
-  如果使用Word2VecEmbedding/StringWord2VecEmbedding，则响亮是concat模式
+  如果使用Word2VecEmbedding/StringWord2VecEmbedding，则是concat模式
 ```
