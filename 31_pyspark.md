@@ -1,6 +1,8 @@
 ### 启动
 ```
 并行500一般建议，collect注意大小，需要的是driver
+stanalone模式记得maxResultSize
+还是amazon的emr省心，还是ssd硬盘，速度快很多，用完关闭省去了删除数据的步骤，比较建议spark配置不做删除，crontab起一个，原因：数据量大会超时导致报错
 
 /data/spark-3.0.0-bin-hadoop3.2/bin/spark-submit 
 --num-executors 2   
