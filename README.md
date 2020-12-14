@@ -6,9 +6,9 @@
 1*: python
 2*: scrawl
 3*: pyspark
-4*：Aho-Corasick 
+4*：aho-corasick 
 5*: ft源码相关
 6*: mysql相关
 7*: es相关
-9*: 一些工具
+9*: 工具类
 ```
