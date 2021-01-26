@@ -35,3 +35,8 @@ sc = SparkContent.getOrCreate()
 ```
 map使用的lambda只能取一个否则报错
 ```
+
+### lazy
+```
+如果是用mysql准备好数据为文件再用spark读取，建议拆分为两个脚本，lazy操作会直接跳过了cache，然后启动spark的时候读取不存在
+```
