@@ -24,8 +24,8 @@ SPARK_WORKER_OPTS="-Dspark.worker.cleanup.enabled=false –Dspark.workder.cleanu
 export PYSPARK_DRIVER_PYTHON=/opt/virtualenv/mh_dm_spark/bin/python
 export PYSPARK_PYTHON=/opt/virtualenv/mh_dm_sparkt/bin/python
 ```
-### 
-```ValueError: Cannot run multiple SparkContexts at once; existing SparkContext(app=single.py, master=local[*]) c
+
+### ValueError: Cannot run multiple SparkContexts at once; existing SparkContext(app=single.py, master=local[*]) c
 ```
 ```
 sc = SparkContent.getOrCreate()
