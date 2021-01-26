@@ -31,15 +31,6 @@ stanalone模式记得maxResultSize
 ***.py
 ```
 
-### spark-env.sh
-```
-JAVA_OPTS="-Xms128m -Xmx1303m -Xss256k"
-SPARK_LOCAL_DIRS=/中间数据路径/
-#export SPARK_SSH_OPTS="-p 36000"
-SPARK_WORKER_OPTS="-Dspark.worker.cleanup.enabled=false –Dspark.workder.cleanup.interval=1200"
-export PYSPARK_DRIVER_PYTHON=/opt/virtualenv/mh_dm_spark/bin/python
-export PYSPARK_PYTHON=/opt/virtualenv/mh_dm_sparkt/bin/python
-```
 
 ### ValueError: Cannot run multiple SparkContexts at once; existing SparkContext(app=*.py, master=local[*])
 ```
