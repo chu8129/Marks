@@ -1,3 +1,12 @@
+### spark-env.sh
+```
+JAVA_OPTS="-Xms128m -Xmx1303m -Xss256k"
+SPARK_LOCAL_DIRS=/dirs/
+#export SPARK_SSH_OPTS="-p 36000"
+SPARK_WORKER_OPTS="-Dspark.worker.cleanup.enabled=false –Dspark.workder.cleanup.interval=12000"
+export PYSPARK_DRIVER_PYTHON=/*env/bin/python
+export PYSPARK_PYTHON=/*env/bin/python
+```
 ### 启动
 ```
 并行500一般建议，collect注意大小，需要的是driver
