@@ -43,7 +43,6 @@ export PYSPARK_PYTHON=/opt/virtualenv/mh_dm_sparkt/bin/python
 
 ### ValueError: Cannot run multiple SparkContexts at once; existing SparkContext(app=*.py, master=local[*])
 ```
-```
 sc = SparkContent.getOrCreate()
 ```
 
