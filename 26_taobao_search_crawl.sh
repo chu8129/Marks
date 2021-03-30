@@ -11,3 +11,4 @@ scrapy genspider taobao_goods taobao.com
 
 
 ## 代码不公开了，一堆干无意义事情的
+## 极其吐槽那些培训，都是拿爬虫说事，一堆僵尸爬虫
