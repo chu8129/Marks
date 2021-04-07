@@ -1,3 +1,4 @@
+## 可以consule etcd,这里上一个超级简单的nginx足够了
 ```
 docker run -d -p 8051:8050 --memory=3G --restart=always scrapinghub/splash:master --maxrss 2048 --disable-browser-caches 
 docker run -d -p 8052:8050 --memory=3G --restart=always scrapinghub/splash:master --maxrss 2048 --disable-browser-caches 
