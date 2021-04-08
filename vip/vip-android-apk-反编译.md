@@ -1,6 +1,6 @@
 ```
 20210408
-  看到mainfest吓了一跳，这么光明正大的吧各个平台push的key/secret明文放在这
+  看到mainfest吓了一跳，这么光明正大的吧各个平台push的key/secret明文放在这,希望后续有各种转变吧，这样的话也是个人才
 ```
 ![key secret][appkeysecret]
 
