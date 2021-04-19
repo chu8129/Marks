@@ -1,0 +1,35 @@
+
+def fecth(url):
+
+    iplist=['http://111.206.81.248:80','http://202.108.50.75:80','http://113.57.252.105:80'] #首先要确定这些IP是可用的
+    r=random.randint(0,2)
+    ip=iplist[r] #随机出来一个IP
+    #print ip
+    http_header={
+        "GET":url,
+        #"HOST":"",
+        #"Referer":"",
+        "User-Agent":"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.107 Safari/537.36"} #设置浏览器(客户端)名字
+    proxy_handler=urllib2.ProxyHandler({"http":ip}) #设置代理IP
+    opener=urllib2.build_opener(proxy_handler,urllib2.HTTPHandler)
+    urllib2.install_opener(opener)
+    http_request=urllib2.Request(url,http_header) #设置请求头
+    http_resposen=urllib2.urlopen(url) #开始访问
+    print http_resposen.code  # 如果这里返回 状态码 200 表示 成功
+
+
+
+if __name__=="__main__":
+    for i in range(100):
+
+
+        #在这里加入多线程 1
+        threads=[]
+        t=threading.Thread(target=fecth,args=("http://tieba.baidu.com/",))
+        threads.append(t)
+        for th in threads:
+            th.start()
+
+
+
+        #fecth("http://tieba.baidu.com/")  #没有用多线程 可直接调用

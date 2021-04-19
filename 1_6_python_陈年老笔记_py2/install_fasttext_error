@@ -1,0 +1,6 @@
+Cpython
+pip install Cython
+pip install h5py
+
+fasttext/fasttext.cpp:41:20: fatal error: Python.h
+apt-get install python3 python-dev python3-dev build-essential libssl-dev libffi-dev libxml2-dev libxslt1-dev zlib1g-dev      python-pip

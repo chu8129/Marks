@@ -1,0 +1,30 @@
+Times是一个小巧的Python库，功能是处理不同时区之间的时间转换。
+
+接收时间输入
+
+永远不要与本地时间打交道。任何时候你接受一个本地时间输入（例如从某个用户），需立即把它转换成通用时间：
+
+1
+2
+>>> times.to_universal(local_time, 'Europe/Amsterdam')
+datetime.datetime(2012, 2, 1, 10, 31, 45, 781262)
+POSIX时间戳
+
+你可以安全的把POSIX时间戳转换成datatime表示
+
+1
+2
+3
+>>> import time, times
+>>> print times.to_universal(time.time())
+2012-02-03 11:59:03.588419
+呈现时间
+
+1
+2
+3
+4
+>>> import times
+>>> now = times.now()
+>>> print times.format(now, 'CET')
+2012-02-01 21:32:10+0100

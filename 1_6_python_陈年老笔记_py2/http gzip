@@ -1,0 +1,81 @@
+
+HTTP 请求中包含 Accept-encoding: gzip 头信息可以告诉服务器，如果它有任何新数据要发送给我时，请以压缩的格式发送。如果服务器支持压缩，它将返回由 gzip 压缩的数据并且使用 Content-encoding: gzip 头信息标记。
+
+#codeing:utf-8
+import urllib2, httplib
+import StringIO
+import gzip
+
+def findUrlGzip(url):
+    request = urllib2.Request(url)
+    request.add_header('Accept-encoding', 'gzip')
+    opener = urllib2.build_opener()
+    f = opener.open(request)
+    isGzip = f.headers.get('Content-Encoding')
+    #print isGzip
+    if isGzip :
+        compresseddata = f.read()
+        compressedstream = StringIO.StringIO(compresseddata)
+        gzipper = gzip.GzipFile(fileobj=compressedstream)
+        data = gzipper.read()
+    else:
+        data = f.read()
+    return data
+
+def findUrlTitle(url):
+        html = findUrlGzip(url)
+        html = html.lower()
+        spos = html.find("<title>")
+        epos = html.find("</title>")
+        if spos != -1 and epos != -1 and spos < epos:
+            title = html[spos+7:epos]
+            title = title[:-9]
+        else:
+            title = ""
+        return title
+
+if __name__ == "__main__":
+    url = 'http://business.sohu.com/20101010/n275509607.shtml'
+    title = findUrlTitle(url)
+    print title
+
+
+meican.com
+
+import urllib2,urllib,httplib,re,gzip,StringIO
+header={'Host':'www.meican.com',
+        'Accept-Language':'zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3',
+        'Connection':'keep-alive',
+        'Accept-Encoding':'gzip, deflate',
+        'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:27.0) Gecko/20100101 Firefox/27.0'
+        }
+con=httplib.HTTPConnection('www.meican.com')
+con.request(method='GET',url='/map',headers=header)
+res=con.getresponse()
+res.read()
+con.close()
+print 'msg:',res.msg
+header['Referer']='http://www.meican.com/map'
+# __utma=1.329336820.1394692720.1394692720.1394692720.1; __utmb=1.1.10.1394692720; __utmc=1; __utmz=1.1394692720.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
+co='__utma=1.2139754200.1394684841.1394684841.1394684841.1; __utmb=1.2.9.1394684842174; __utmc=1; __utmz=1.1394684841.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)'
+cookis=re.findall('machineId.*?.meican.com',res.getheader('Set-cookie'))[0]+'; '+re.findall('guestId.*?.meican.com',res.getheader('Set-cookie'))[0]+'; '+co
+header['Cookie']=cookis
+header['Accept']='text/plain, */*; q=0.01'
+header['X-Requested-With']='XMLHttpRequest'
+RequestLine='GET /restaurants/getrestaurantlist?bounds=39.973517989511855%2C116.3942093125977%2C40.001565531573746%2C116.43540804306645&cityId=1&token=1394692788318 HTTP/1.1'
+print '====================================================='
+for i in header:
+    print i,':',header[i]
+con=httplib.HTTPConnection('www.meican.com')
+##print 'header[\'(Request-Line)\'][4:-10]',header['(Request-Line)'][4:-9]
+con.request('get',RequestLine[4:-10],headers=header)
+res=con.getresponse()
+print '===================================================='
+print 'msg:',res.msg
+##print len(res)
+compresseddata=res.read()
+compressedstream = StringIO.StringIO(compresseddata)
+gzipper = gzip.GzipFile(fileobj=compressedstream)
+data = gzipper.read()
+print data

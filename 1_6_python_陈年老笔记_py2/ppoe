@@ -1,0 +1,273 @@
+1、
+
+#!/usr/bin/env python
+#Filename: text.py/
+#coding:utf-8
+import string, getopt, sys, httplib, urllib, time,socket
+def main():
+    #定义一堆头文件>_<!
+    HOSTNAME = '10.254.0.9'
+    username='2004090600010'
+    password='111111'
+    ip=socket.gethostbyname(socket.gethostname())
+    #portallonindata是用于保存自己电脑的用户名密码的socket.gethostbyname(socket.gethostname())，抓包新发现。。。BS下狗日的华为，哈哈！
+    #开始第一轮连接，不带JSESSIONID的，目的是从服务器获得一个用于后续的连接。
+    headers = {'Accept-Language':'zh-cn','Accept-Encoding': 'gzip, deflate','User-Agent': 'Mozilla/4.0 (compatible; MSIE 6.0;Windows NT 5.0)',
+     'Host': HOSTNAME ,'Connection':' Keep-Alive',
+ }
+    conn = httplib.HTTPConnection(HOSTNAME)
+    conn.request('GET', '/', None, headers)
+    response = conn.getresponse()
+    s = response.read()
+    cookie1 = response.getheader("Set-Cookie")
+    a=cookie1[207:221]
+    print "第一次获取的jsessionid!"                                   
+    #a是JSESSIONID，笨人用笨办法了，嘿嘿。
+    print a
+    #准备第二次的连接，用于POST自己的挨劈地址=_=!这里调了好久，
+    headers = {'Accept': ' image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/x-shockwave-flash, **',
+     'Accept-Language':'zh-cn','Accept-Encoding': 'gzip, deflate','User-Agent': 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)','Host': HOSTNAME,  'Connection':' Keep-Alive', 'Cookie': 'cookieEnableTest=cookieEnable; isPNP=0; needActiveX=1; JSESSIONID='+a,
+  }
+    start = string.find(URL, "/")
+    end = string.find(URL, "?", start)
+    URL2 = URL[start:end]
+    params = URL[end+1:]
+    idnum=params[13:26]
+    conn.request('GET', URL2, params, headers)
+    response = conn.getresponse()
+    s = response.read()
+    #是服务器应答的大括号你的东西。
+    #loginstr = s[start:end]
+    print "提取服务器回应的用户个人信息"
+    ac=s[2697:3090]
+    print ac
+    #loginstr = s[start:end]
+
+    loginstr = ac
+    loginstr = string.replace(loginstr, "\r", "")  
+    #string.replace(string1,a,b) 把把STRING1字符串里面的A，全部替换成B
+    loginstr = string.replace(loginstr, "\n", "")
+    loginstr = string.replace(loginstr, " ", "")
+    loginstr = string.replace(loginstr, "'", "")
+    print loginstr
+    L = string.split(loginstr, ',')
+    print '=====L====',L
+    user = L[0]
+    isnno = 1204
+    loginkey = L[6]
+    ip2 = L[7]
+    #是服务器应答的大括号你的东西。
+    print "用户名"
+    print user
+    print "本机ip"
+    print ip
+    print "loginkey"
+    print loginkey
+
+    #loginstr = s[start:end]
+    #的格式应该类似于 2004090600010,.. 1,..0,..0,..2,..1000,....mGyL0TosmUBo4GyKIvA2-RBhVr4vznuxkQA9,..1 
+    #第五步, 这时已经获取了注册信息,但是还不能keep-alive, 这一步是请求一个新的sessionID, 这个ID才是keep-alive用的
+    #这个是网络上铁通用户的说法,自己抓包也是这样,可是我一直用初始的JSSESSIONID也没问题,成功了7小时.
+    path='/ClientProcess.jsp?MsgType=2&UserName='+username+'&LocalIP='+ip+'&SeparateCard=0&ISNNO=1024&LoginKey='+loginkey+'&isPNP=0&httpIP='+ip
+    print '===path===',path
+    conn = httplib.HTTPConnection(HOSTNAME)
+    headers = {'Accept': 'text/html', 'User-Agent': 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)','Cookie':cookie1}
+    conn.request('GET', path, None, headers)
+    response = conn.getresponse()
+   
+   
+    klcookie = response.getheader("Set-Cookie")
+
+    #这里新的JSESSIONID没获取成功！＊_＊!
+    #重要参数列表：loginkey:kl-cookie:还有一个数字ID(?貌似不重的。)：大致就这些了。^_^
+    print '====user====', user
+    print "=====loginkey====",loginkey
+    print "===idnum====",idnum
+    print "===klcookie====",klcookie
+    kljsessionid=klcookie[11:25]
+    print "===klcookie====",kljsessionid
+    #最后几步了。
+    headers = {'Accept': 'image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/x-shockwave-flash, ** ',
+        'Accept-Language': 'zh-cn','Accept-Encoding': 'gzip, deflate','User-Agent': 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)',
+        'Host': HOSTNAME, 'Connection': 'Keep-Alive','Cookie ': ' JSESSIONID= '+kljsessionid
+        }
+    print headersx
+    print "开始保持后继连接"
+    conn = httplib.HTTPConnection(HOSTNAME)
+    conn.request('GET', pathx, None, headersx)
+    #每5分钟保持连接的调用函数
+    def kl(HOSTNAME,pathx,headersx):
+        conn = httplib.HTTPConnection(HOSTNAME)
+        conn.request('GET', pathx, None, headersx)
+   
+    kl(HOSTNAME,pathx,headersx)
+    time.sleep(30.0)
+    pathed = '/ClientProcess.jsp?MsgType=3&ISNNO=1000&LocalIP=%s&UserName=%s&LoginKey=%s&isPNP=0&httpIP=%s' %(ip,username,loginkey,ip)
+    print pathed
+    headered = {'Accept': 'text/html, */*',
+        'User-Agent': 'Mozilla/3.0 (compatible; Indy Library)',
+        'Host': HOSTNAME,'Cookie ': ' JSESSIONID= '+kljsessionid
+        }
+    print headered
+    print "断开连接"
+    conn = httplib.HTTPConnection(HOSTNAME)
+    conn.request('GET', pathed, None, headered)
+ 
+main()
+
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+import os
+g_adsl_account = {"name": "宽带连接",
+                                "username": "***",
+                                "password": "***"}
+
+class Adsl(object):
+        #==============================================================================
+        # __init__ : name: adsl名称
+        #==============================================================================
+        def __init__(self):
+                self.name = g_adsl_account["name"]
+                self.username = g_adsl_account["username"]
+                self.password = g_adsl_account["password"]
+
+        #==============================================================================
+        # set_adsl : 修改adsl设置
+        #==============================================================================
+        def set_adsl(self, account):
+                self.name = account["name"]
+                self.username = account["username"]
+                self.password = account["password"]
+
+        #==============================================================================
+        # connect : 宽带拨号
+        #==============================================================================
+        def connect(self):
+                cmd_str = "rasdial %s %s %s" % (self.name, self.username, self.password)
+                os.system(cmd_str)
+                time.sleep(5)
+
+        #==============================================================================
+        # disconnect : 断开宽带连接
+        #==============================================================================
+        def disconnect(self):
+                cmd_str = "rasdial %s /disconnect" % self.name
+                os.system(cmd_str)
+                time.sleep(5)
+
+        #==============================================================================
+        # reconnect : 重新进行拨号
+        #==============================================================================
+        def reconnect(self):
+                self.disconnect()
+                self.connect()
+
+aa = Adsl()
+aa.reconnect()
+ 
+#!coding: cp936
+import win32ras
+import time,os
+
+def Connect(dialname, account, passwd):
+    dial_params = (dialname, '', '', account, passwd, '')
+    return win32ras.Dial(None, None, dial_params, None)
+
+def DialBroadband():
+    dialname = '宽带连接'  #just a name
+    account = '***'
+    passwd = '***'
+    try:
+        #handle is a pid, for disconnect or showipadrress, if connect success return 0.
+        #account is the username that your ISP supposed, passwd is the password.
+        handle, result = Connect(dialname, account, passwd)
+        if result == 0:
+            print "Connection success!"
+            return handle, result
+        else:
+            print "Connection failed, wait for 5 seconds and try again..."
+            time.sleep(5)
+            DialBroadband()
+    except:
+        print "Can't finish this connection, please check out."
+        return
+
+def Disconnect(handle):
+    if handle != None:
+        try:
+            win32ras.HangUp(handle)
+            print "Disconnection success!"
+            return "success"
+        except:
+            print "Disconnection failed, wait for 5 seconds and try again..."
+            time.sleep(5)
+            Disconnect()
+    else:
+        print "Can't find the process!"
+        return
+
+def Check_for_Broadband():
+    connections = []
+    connections = win32ras.EnumConnections()
+    if(len(connections) == 0):
+        print "The system is not running any broadband connection."
+        return
+    else:
+        print "The system is running %d broadband connection." % len(connections)
+        return connections
+
+def ShowIpAddress(handle):
+    print win32ras.GetConnectStatus(handle)
+    data = os.popen("ipconfig","r").readlines()
+    have_ppp = 0
+    ip_str = None
+    for line in data:
+        if line.find("宽带连接")>=0:
+            have_ppp = 1
+        #if your system language is English, you should write like this:
+        #if have_ppp and line.strip().startswith("IP Address"):
+        #in othewords, replace the "IPv4 地址" to "IP Address"
+        if have_ppp and line.strip().startswith("IPv4 地址"):
+            ip_str = line.split(":")[1].strip()
+            have_ppp = 0
+            print ip_str
+
+#get my ipaddress anf disconnect broadband connection.
+def main():
+    data = Check_for_Broadband()
+    #if exist running broadband connection, disconnected it.
+    if data != None:
+        for p in data:
+            ShowIpAddress(p[0])
+            if(Disconnect(p[0]) == "success"):
+                print "%s has been disconnected." % p[1]
+            time.sleep(3)
+    else:
+        pid, res = DialBroadband()
+        ShowIpAddress(pid)
+        time.sleep(3)
+        Disconnect(pid)
+    return "finsh test"
+
+test = main()
+print test
+qq号注册的一些原理。
+#coding=gbk
+import os,time
+from selenium import webdriver,selenium
+from selenium.common import exceptions
+
+import shutil
+driver = webdriver.Chrome(executable_path='./chromedriver.exe')
+
+for i in range(10):
+    driver.get('http://zc.qq.com')
+    driver.delete_all_cookies()    
+    nick = driver.find_element_by_name('nick')
+    nick.clear()
+    nick.send_keys(u'测试%s'%i)
+    password = driver.find_element_by_name('password')
+    password.send_keys(u'19890107qw')
+    password1 = driver.find_element_by_name('pass_again')
+    password1.send_keys(u'19890107qw')
+os.system('taskkill /F /IM chromedriver.exe')

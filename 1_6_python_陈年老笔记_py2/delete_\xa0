@@ -1,0 +1,2 @@
+\xa0 \u3000
+去除\xa0, "".join(string.split())，split不带参数分割所有换行符、制表符、空格
