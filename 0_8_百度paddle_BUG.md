@@ -18,5 +18,5 @@ paddle2onnx==0.5.1
 paddlehub==2.1.0
 paddlenlp==2.0.0rc18
 paddlepaddle==2.0.2
-ymserver@dm-00.mh.alishh:~/vhost/mh_dm_spark$
+
 ```
