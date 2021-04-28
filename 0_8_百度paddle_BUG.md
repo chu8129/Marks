@@ -19,5 +19,5 @@ paddlehub==2.1.0
 paddlenlp==2.0.0rc18
 paddlepaddle==2.0.2
 
-只能build docker时replace
+哪个实习生写的？？？只能build docker时replace打补丁了
 ```
