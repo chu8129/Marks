@@ -39,6 +39,7 @@ RUN python -m pip install opencv-python-headless==4.5.1.48 -i http://pypi.douban
 RUN python -m pip install paddlepaddle==2.0.2 -i https://mirror.baidu.com/pypi/simple
 RUN python -m pip install paddlehub==2.1.0 -i https://mirror.baidu.com/pypi/simple
 
+RUN sed -i "s/import paddle.batch/from import import batch/g" /usr/local/lib/python3.6/site-packages/paddle/__init__.py
 RUN sed -i "s/batch = batch.batch/batch = paddle.batch.batch/g" /usr/local/lib/python3.6/site-packages/paddle/__init__.py
 RUN python -c "import paddlehub as hub;print(hub.Module(name='lac').lexical_analysis(data={'text':['我是个测试机器人']}))"
 ```
