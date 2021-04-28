@@ -43,3 +43,33 @@ RUN sed -i "s/import paddle.batch/from import import batch/g" /usr/local/lib/pyt
 RUN sed -i "s/batch = batch.batch/batch = paddle.batch.batch/g" /usr/local/lib/python3.6/site-packages/paddle/__init__.py
 RUN python -c "import paddlehub as hub;print(hub.Module(name='lac').lexical_analysis(data={'text':['我是个测试机器人']}))"
 ```
+### 错误2
+```
+  File "<string>", line 1, in <module>
+  File "/usr/local/lib/python3.6/site-packages/paddlehub/__init__.py", line 18, in <module>
+    import paddle
+  File "/usr/local/lib/python3.6/site-packages/paddle/__init__.py", line 29, in <module>
+    from .fluid import monkey_patch_variable
+  File "/usr/local/lib/python3.6/site-packages/paddle/fluid/__init__.py", line 51, in <module>
+    from . import io
+  File "/usr/local/lib/python3.6/site-packages/paddle/fluid/io.py", line 40, in <module>
+    from . import reader
+  File "/usr/local/lib/python3.6/site-packages/paddle/fluid/reader.py", line 25, in <module>
+    from .dataloader import BatchSampler, Dataset, IterableDataset
+  File "/usr/local/lib/python3.6/site-packages/paddle/fluid/dataloader/__init__.py", line 17, in <module>
+    from . import dataset
+  File "/usr/local/lib/python3.6/site-packages/paddle/fluid/dataloader/dataset.py", line 18, in <module>
+    import paddle.dataset.common
+  File "/usr/local/lib/python3.6/site-packages/paddle/dataset/__init__.py", line 18, in <module>
+    import paddle.dataset.mnist
+  File "/usr/local/lib/python3.6/site-packages/paddle/dataset/mnist.py", line 23, in <module>
+    import paddle.dataset.common
+  File "/usr/local/lib/python3.6/site-packages/paddle/dataset/common.py", line 55, in <module>
+    must_mkdirs(DATA_HOME)
+  File "/usr/local/lib/python3.6/site-packages/paddle/dataset/common.py", line 48, in must_mkdirs
+    os.makedirs(DATA_HOME)
+  File "/usr/local/lib/python3.6/os.py", line 220, in makedirs
+    mkdir(name, mode)
+PermissionError: [Errno 13] Permission denied: '/.cache/paddle/dataset'
+```
+### 问题：为何这么奇怪的路径
