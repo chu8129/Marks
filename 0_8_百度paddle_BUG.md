@@ -19,7 +19,7 @@ paddlehub==2.1.0
 paddlenlp==2.0.0rc18
 paddlepaddle==2.0.2
 
-哪个实习生写的？？？只能build docker时replace打补丁了
+额？？？只能build docker时replace打补丁了
 ```
 ### Dockerfile,历史版本各种坑加了目录，还有可能少了so加了apt install，还有cv2的安装问题，python -c是为了一次性下载
 ```
