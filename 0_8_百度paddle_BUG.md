@@ -1,6 +1,6 @@
 ### 错误1
 ```
-***
+*** 
     import paddlehub as hub
   File "/usr/local/lib/python3.6/site-packages/paddlehub/__init__.py", line 18, in <module>
     import paddle
@@ -19,4 +19,5 @@ paddlehub==2.1.0
 paddlenlp==2.0.0rc18
 paddlepaddle==2.0.2
 
+只能build docker时replace
 ```
