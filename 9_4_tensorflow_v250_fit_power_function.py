@@ -5,7 +5,7 @@ tensorflow.compat.v1.disable_eager_execution()
 import datetime
 import numpy
 import matplotlib.pylab as plt
-
+from functools import reduce
 
 import sys
 
@@ -14,10 +14,11 @@ flag = sys.argv[1]
 sys.stdout.write("flag:%s" % flag)
 sys.stdout.flush()
 
+copy_times = 1
 model_file = "model.ckpt"
-_x_data = [1, 0.2, 0.06, 0.07, 0.08, 0.09, 0.1, 0.11, 0.12, 0.17]
+_x_data = [0.006, 0.007, 0.008, 0.009, 0.01, 0.011, 0.012, 0.017, 0.01] * 10
 x_data = numpy.reshape(_x_data, (len(_x_data), 1))
-_y_data = [1, 0.8, 0.169, 0.133, 0.122, 0.16, 0.147, 0.135, 0.136, 0.198]
+_y_data = [0.169, 0.133, 0.122, 0.16, 0.147, 0.135, 0.136, 0.198, 0.16] * 10
 y_data = numpy.reshape(_y_data, (len(_x_data), 1))
 
 if flag == "train":
@@ -27,7 +28,7 @@ if flag == "train":
     x = tensorflow.compat.v1.placeholder(tensorflow.float32, [None, 1], name="x")
     y = tensorflow.compat.v1.placeholder(tensorflow.float32, [None, 1], name="y")
 
-    hidden_size = 10
+    hidden_size = 20
 
     Weight_L1 = tensorflow.Variable(
         tensorflow.keras.initializers.RandomNormal(mean=0.0, stddev=1.0)(shape=(1, hidden_size)), name="w"
@@ -43,7 +44,7 @@ if flag == "train":
     )
 
     loss = tensorflow.reduce_mean(tensorflow.square(y - prediction))
-    train_step = tensorflow.compat.v1.train.AdadeltaOptimizer(0.01, rho=0.95).minimize(loss)
+    train_step = tensorflow.compat.v1.train.GradientDescentOptimizer(0.001).minimize(loss)
 
     saver = tensorflow.compat.v1.train.Saver()
 
