@@ -16,9 +16,9 @@ sys.stdout.flush()
 
 copy_times = 1
 model_file = "model.ckpt"
-_x_data = [0.006, 0.007, 0.008, 0.009, 0.01, 0.011, 0.012, 0.017, 0.01] * 10
+_x_data = [0.006, 0.007, 0.008, 0.009, 0.01, 0.011, 0.012, 0.017, 0.01, 0.2]
 x_data = numpy.reshape(_x_data, (len(_x_data), 1))
-_y_data = [0.169, 0.133, 0.122, 0.16, 0.147, 0.135, 0.136, 0.198, 0.16] * 10
+_y_data = [0.169, 0.133, 0.122, 0.16, 0.147, 0.135, 0.136, 0.198, 0.16, 0.8]
 y_data = numpy.reshape(_y_data, (len(_x_data), 1))
 
 if flag == "train":
@@ -44,7 +44,7 @@ if flag == "train":
     )
 
     loss = tensorflow.reduce_mean(tensorflow.square(y - prediction))
-    train_step = tensorflow.compat.v1.train.GradientDescentOptimizer(0.001).minimize(loss)
+    train_step = tensorflow.compat.v1.train.GradientDescentOptimizer(0.1).minimize(loss)
 
     saver = tensorflow.compat.v1.train.Saver()
 
