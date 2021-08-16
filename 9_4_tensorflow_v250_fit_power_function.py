@@ -6,6 +6,7 @@ import datetime
 import numpy
 import matplotlib.pylab as plt
 from functools import reduce
+import onnxruntime
 
 import sys
 
@@ -76,9 +77,20 @@ if flag == "train":
 
 
 else:
+    x_test = [index * 1.0 / 10000 for index in range(10000)]
+    prediction_value = None
+
+    sess = onnxruntime.InferenceSession("ad_effect.onnx")
+    x = sess.get_inputs()[0].name
+    restore = sess.get_outputs()[0].name
+    prediction_value = [
+        float(value[0])
+        for value in sess.run([restore], {x: numpy.reshape(x_test, (len(x_test), 1)).astype(numpy.float32)})[0]
+    ]
+    """
     with tensorflow.compat.v1.Session() as sess:
         saver = tensorflow.compat.v1.train.import_meta_graph(model_file + ".meta")
-        saver.restore(sess, tensorflow.train.latest_checkpoint("./"))
+        saver.restore(sess, tensorflow.train.latest_checkpoint("/ssd/Marks/"))
         graph = tensorflow.compat.v1.get_default_graph()
         x = graph.get_tensor_by_name("x:0")
         y = graph.get_tensor_by_name("y:0")
@@ -86,13 +98,11 @@ else:
 
         x_test = [index * 1.0 / 10000 for index in range(10000)]
         prediction_value = sess.run(restore, feed_dict={x: numpy.reshape(x_test, (len(x_test), 1))})
-        plt.plot(
-            x_test,
-            prediction_value,
-            "r,",
-        )
-        plt.scatter(
-            _x_data + [0],
-            _y_data + [0],
-        )
-        plt.show()
+    """
+    plt.plot(
+        x_test, prediction_value, "r,",
+    )
+    plt.scatter(
+        _x_data + [0], _y_data + [0],
+    )
+    plt.show()
