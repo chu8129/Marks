@@ -45,6 +45,9 @@ class TextGenerator(keras.utils.Sequence):
 
         self.data_size = len(self.data_list)
 
+        if not train:
+            return
+
         label_set = reduce(lambda data_set, content:set(self.split(content)) | data_set, map(lambda cells:cells[1], iter(self.data_list)), set())
         self.label_to_index = dict(_[::-1] for _ in enumerate(sorted(vocab_set),start=1))
         self.index_to_label = dict(_[::-1] for _ in self.label_to_index.items())
