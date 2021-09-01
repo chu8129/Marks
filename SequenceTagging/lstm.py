@@ -11,6 +11,7 @@ import logging
 logger = logging.getLogger("root")
 
 import tensorflow
+from data import TextGenerator
 
 class BiLstmCrf:
     def build(self):
@@ -25,26 +26,18 @@ class BiLstmCrf:
         self.model = model
 
     def __init__(self):
-        self.context_label = [] # add
+        data_generater = TextGenerator(128).init("data")
 
-        self.vocab_dict = {}
-        self.tag_dict = {}
-        self.generate_base_data()
+        self.vocab_dict = data_generater.vocab_to_index
+        self.tag_dict = data_generater.label_to_index
 
         self.vocab_size = max(self.vocab_dict.values())
         self.embedding_size = 128
         self.tag_size = max(self.tag_dict.values())
 
         self.model = None
-
         self.build()
 
-    def generate_base_data(self):
-        from functools import reduce
-        vocab_set = reduce(lambda data_set, content:set(self.split(content)) | data_set, map(lambda cells:cells[0], iter(self.context_label)), set())
-        self.vocab_dict = dict(_[::-1] for _ in enumerate(sorted(vocab_set),start=1))
-        tag_set = reduce(lambda data_set, content:set(self.split(content)) | data_set, map(lambda cells:cells[1], iter(self.context_label)), set())
-        self.tag_dict = dict(_[::-1] for _ in enumerate(sorted(tag_set),start=1))
 
     def fit(self, X, y, epochs=100, transParam=None):
         return self.model.fit(X, y, epochs=epochs, callbacks=[tensorflow.keras.callbacks.TensorBoard(log_dir="logs", histogram_freq=1)])
