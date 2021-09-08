@@ -24,21 +24,24 @@ class BiLstmCrf:
         )(input_)
         lstm_1_ = tensorflow.keras.layers.Bidirectional(
             tensorflow.keras.layers.LSTM(
-                self.tag_size, return_sequences=True, recurrent_dropout=0.6, activation="tanh"
+                self.tag_size, return_sequences=True, recurrent_dropout=0.3, activation="tanh"
             ),
             merge_mode="sum",
         )(embedding_)
         lstm_ = tensorflow.keras.layers.Bidirectional(
             tensorflow.keras.layers.LSTM(
-                self.tag_size, return_sequences=True, recurrent_dropout=0.6, activation="softmax"
+                self.tag_size, return_sequences=True, recurrent_dropout=0.3, activation="softmax"
             ),
             merge_mode="sum",
         )(lstm_1_)
         # https://www.tensorflow.org/addons/api_docs/python/tfa/layers/CRF
+        """
         decoded_sequence, potentials, sequence_length, chain_kernel = tensorflow_addons.layers.CRF(
             self.tag_size, name="crf"
         )(lstm_)
         model = tensorflow.keras.Model(input_, potentials)
+        """
+        model = tensorflow.keras.Model(input_, lstm_)
         model.compile(
             optimizer=tensorflow.keras.optimizers.RMSprop(learning_rate=0.3),
             loss=tensorflow_addons.losses.SigmoidFocalCrossEntropy(),
