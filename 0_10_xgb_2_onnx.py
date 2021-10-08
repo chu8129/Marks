@@ -23,7 +23,7 @@ xgboost==1.2.0
 
 
 
-“”“
+"""
 def predict(data):
         sess = onnxruntime.InferenceSession(ensure_file("***xgboost.onnx"))
         x = sess.get_inputs()[0].name
@@ -33,4 +33,4 @@ def predict(data):
             float(value[0])
             for value in sess.run([restore], {x: numpy.reshape(data, (len(data), len(data[0]))).astype(numpy.float32)})[0]
         ]
-”“”
+"""
