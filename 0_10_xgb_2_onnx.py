@@ -20,3 +20,17 @@ onnxmltools==1.9.1
 onnxruntime==1.4.0
 xgboost==1.2.0
 """
+
+
+
+“”“
+def predict(data):
+        sess = onnxruntime.InferenceSession(ensure_file("***xgboost.onnx"))
+        x = sess.get_inputs()[0].name
+        restore = sess.get_outputs()[0].name
+        data = data.values.tolist()
+        prediction_value = [
+            float(value[0])
+            for value in sess.run([restore], {x: numpy.reshape(data, (len(data), len(data[0]))).astype(numpy.float32)})[0]
+        ]
+”“”
