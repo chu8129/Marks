@@ -34,7 +34,7 @@ stanalone模式记得maxResultSize
 --num-executors 2   
 --executor-memory 8G 
 --driver-memory 16G 
---executor-cores 1  
+--executor-cores *  
 --conf spark.default.parallelism=1000 
 --conf spark.driver.maxResultSize=8G 
 --py-files code1105.zip 
