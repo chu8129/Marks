@@ -72,4 +72,4 @@ RUN python -c "import paddlehub as hub;print(hub.Module(name='lac').lexical_anal
     mkdir(name, mode)
 PermissionError: [Errno 13] Permission denied: '/.cache/paddle/dataset'
 ```
-### 问题：为何这么奇怪的路径
+### 问题：为何这么奇怪的路径,可能是docker问题，更新了版本解决
