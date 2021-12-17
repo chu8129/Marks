@@ -1,8 +1,9 @@
 set ts=4
 set nu
 set expandtab
-let &termencoding=&encoding
-set fileencodings=utf-8,gbk
+set encoding=utf-8
+set termencoding=utf-8
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 colorscheme desert
 syntax on
 filetype plugin on
