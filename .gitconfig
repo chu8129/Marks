@@ -1,0 +1,17 @@
+[https]
+	proxy = http://localhost:8171
+[http]
+	proxy = http://localhost:8171
+	postBuffer = 524288000
+	lowSpeedLimit = 0
+	lowSpeedTime = 999999
+	version = HTTP/1.1
+	maxRequestBuffer = 524288000
+[pack]
+    deltaCacheSize = 2047m
+    packSizeLimit = 2047m
+    windowMemory = 2047m
+[core]
+    packedGitLimit = 512m
+    packedGitWindowSize = 512m 
+	compression = 0
