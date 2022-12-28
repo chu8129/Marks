@@ -54,3 +54,8 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias ll="ls -lht"
+
+
+
+
+export PS1=$'\e[01;32m %n@%m \e[01;35m %d \e[01;34m %t \n \e[01;31m $> '
