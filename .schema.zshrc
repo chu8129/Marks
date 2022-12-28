@@ -50,7 +50,7 @@ source $ZSH/oh-my-zsh.sh
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-alias ll='ls -alF'
+alias ll='ls -atlF'
 alias la='ls -A'
 alias l='ls -CF'
 alias ll="ls -lht"
