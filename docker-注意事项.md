@@ -11,3 +11,10 @@ docker run -e TZ=Asia/Shanghai --log-opt max-size=5m --log-opt max-file=1 --user
 ```
 docker -t build dm:v3 .
 ```
+
+
+
+### 2023/01/09
+```
+docker run --pid host -it --rm -e TZ=Asia/Shanghai --log-opt max-size=5m --log-opt max-file=1 --user 1001:1001 --shm-size=1024m -m 55g --gpus '"device=0,"' -v ${PWD}:/data/ -p 8130:8130 qw:tf210 jupyter-lab --ip 0.0.0.0 --port 8130 --allow-root
+```
