@@ -14,3 +14,11 @@ SET @@session.unique_checks = 0;
 SET @@session.foreign_key_checks = 0;
 SET AUTOCOMMIT = 0;
 ```
+```
+LOCK TABLES `erp_order_2018` WRITE;
+ALTER TABLE  erp_order_2018 DISABLE  KEYS ;
+INSERT INTO `erp_order_2018` VALUES (1,11,'UPDATED');
+INSERT INTO `erp_order_2018 ` VALUES (2,11,'UPDATED');
+ALTER TABLE `erp_order_2018 ` ENABLE KEYS;
+UNLOCK TABLES;
+```
