@@ -9,7 +9,6 @@ set global innodb_buffer_pool_size=10 * 1024 * 1024 * 1024;
 set global innodb_log_buffer_size=1 * 1024 * 1024 * 1024;
 set global net_buffer_length=1 * 1024 * 1024 * 1024;
 set global max_allowed_packet=10 * 1024 * 1024 * 1024;
-set global innodb_write_io_threads=8;
 SET foreign_key_checks = 0;
 SET UNIQUE_CHECKS=0;
 SET GLOBAL general_log = 'OFF';
