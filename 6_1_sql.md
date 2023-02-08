@@ -24,3 +24,6 @@ INSERT INTO `` VALUES (2,11,'UPDATED');
 ALTER TABLE `` ENABLE KEYS;
 UNLOCK TABLES;
 ```
+```
+能上ssd就ssd吧，硬件的提升，质的飞跃
+```
