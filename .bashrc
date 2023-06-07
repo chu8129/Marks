@@ -12,3 +12,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+
+function b64() {
+  base64 $1 |sed -e 's/^/data:image\/jpeg;base64,/g'  | pbcopy;
+}
