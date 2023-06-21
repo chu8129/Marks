@@ -16,3 +16,16 @@ To remove a submodule you need to:
 增加master分支
 git submodule add  --force -b master git@git.***/commonproto.git commonproto
 ```
+
+
+### 出现clone同步问题
+```
+# git clone https://huggingface.co/lmsys/vicuna-13b-delta-v0
+Cloning into 'vicuna-13b-delta-v0'...
+fatal: unable to access 'https://huggingface.co/lmsys/vicuna-13b-delta-v0/': gnutls_handshake() failed: Error in the pull function.
+
+
+
+git config --global http.sslBackend openssl
+git config --global http.sslBackend gnutls
+```
