@@ -26,7 +26,7 @@ Cloning into 'vicuna-13b-delta-v0'...
 fatal: unable to access 'https://huggingface.co/lmsys/vicuna-13b-delta-v0/': gnutls_handshake() failed: Error in the pull function.
 
 
-
+先检查网络，有可能是代理问题
 git config --global http.sslBackend openssl
 git config --global http.sslBackend gnutls
 ```
