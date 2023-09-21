@@ -30,3 +30,11 @@ fatal: unable to access 'https://huggingface.co/lmsys/vicuna-13b-delta-v0/': gnu
 git config --global http.sslBackend openssl，可能不支持
 git config --global http.sslBackend gnutls
 ```
+### git branch问题
+```
+# git branch
+error: cannot run less: No such file or directory
+* main
+# git config --global core.pager 'vim -'
+#
+```
