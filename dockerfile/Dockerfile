@@ -184,6 +184,9 @@ run --mount=type=cache,id=custom-pip,target=/root/.cache/pip pip install segment
 run --mount=type=cache,id=custom-pip,target=/root/.cache/pip pip install pytorch-fid
 run --mount=type=cache,id=custom-pip,target=/root/.cache/pip pip install ultralytics
 run python -c "import ultralytics;import inspect;import os; os.system(f'sed -i \'/CUBLAS_WORKSPACE_CONFIG/d\' {inspect.getsourcefile(ultralytics.utils)}')"
+run python -c "import ultralytics;import inspect;import os; os.system(f'sed -i \'/CUBLAS_WORKSPACE_CONFIG/d\' {inspect.getsourcefile(ultralytics.utils.torch_utils)}')"
+run python -c "import ultralytics;import inspect;import os; os.system(f'sed -i \'/torch.backends.cudnn.deterministic/d\' {inspect.getsourcefile(ultralytics.utils.torch_utils)}')"
+run python -c "import ultralytics;import inspect;import os; os.system(f'sed -i \'/torch.use_deterministic_algorithms/d\' {inspect.getsourcefile(ultralytics.utils.torch_utils)}')"
 
 # docsify
 run curl -sL https://deb.nodesource.com/setup_19.x | bash -
