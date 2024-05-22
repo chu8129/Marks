@@ -16,3 +16,7 @@ sudo apt install build-essential libglvnd-dev pkg-config
 filename=./NVIDIA-Linux-x86_64-535.146.02.run
 chmod +x ${filename}
 sudo ${filename}
+
+
+# method 
+apt-get install nvidia-driver-515
