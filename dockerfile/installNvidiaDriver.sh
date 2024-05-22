@@ -20,3 +20,4 @@ sudo ${filename}
 
 # method 
 apt-get install nvidia-driver-515
+apt-get install nvidia-driver-550
