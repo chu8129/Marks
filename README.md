@@ -3,32 +3,28 @@ author: "qiuwen.wang"
 info: 
      mail: chu8129@gmail.com
      github: https://github.com/chu8129
-
 ---
 
-
-<!-- 部分能用
-<style>
+<!-- <style>
 .mark {
         display: block;
         width:30%;
         position: fixed;
-        top: 20%;
-        left: 50%;
+        top: 10%;
+        left: 30%;
         z-index: 5;
 }
 .mark2 {
         display: block;
         width:20%;
         position: fixed;
-        top: 22%;
-        left: 50%;
+        top: 12%;
+        left: 30%;
         z-index: 5;
 }
 </style>
 <p class="mark">qiuwen.wang:https://github.com/chu8129</p>
 <p class="mark2">chu8129@gmail.com</p> -->
-
 
 
 
