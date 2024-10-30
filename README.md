@@ -1,6 +1,6 @@
 ---
-author: "qiuwen.wang"
-info: 
+author: info
+qiuwen: 
      mail: chu8129@gmail.com
      github: https://github.com/chu8129
 ---
