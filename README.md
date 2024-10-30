@@ -1,4 +1,5 @@
 
+<!-- 部分能用
 <style>
 .mark {
         display: block;
@@ -15,10 +16,11 @@
         top: 22%;
         left: 50%;
         z-index: 5;
+}
 </style>
-
 <p class="mark">qiuwen.wang:https://github.com/chu8129</p>
-<p class="mark2">chu8129@gmail.com</p>
+<p class="mark2">chu8129@gmail.com</p> -->
+
 
 
 ---
