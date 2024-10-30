@@ -1,3 +1,26 @@
+
+<style>
+.mark {
+        display: block;
+        width:30%;
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        z-index: 5;
+}
+.mark2 {
+        display: block;
+        width:20%;
+        position: fixed;
+        top: 22%;
+        left: 50%;
+        z-index: 5;
+</style>
+
+<p class="mark">qiuwen.wang:https://github.com/chu8129</p>
+<p class="mark2">chu8129@gmail.com</p>
+
+
 ---
 author: "qiuwen.wang"
 info: 
