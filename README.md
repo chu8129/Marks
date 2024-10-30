@@ -1,3 +1,11 @@
+---
+author: "qiuwen.wang"
+info: 
+     mail: chu8129@gmail.com
+     github: https://github.com/chu8129
+
+---
+
 
 <!-- 部分能用
 <style>
@@ -22,14 +30,6 @@
 <p class="mark2">chu8129@gmail.com</p> -->
 
 
-
----
-author: "qiuwen.wang"
-info: 
-     mail: chu8129@gmail.com
-     github: https://github.com/chu8129
-
----
 
 
 
