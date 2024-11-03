@@ -17,13 +17,12 @@ proxy-groups:
 
 dns:
     enable: true
-    ipv6: true
+    ipv6: false
     enhanced-mode: fake-ip
     fake-ip-range: 198.18.0.1/16
     use-hosts: true
     nameserver:
         - https://dns.cloudflare.com/dns-query#h3=true&skip-cert-verify=true
-        - https://doh.pub/dns-query
         - https://8.8.8.8/dns-query#ecs=1.1.1.1/24&ecs-override=true
     fallback:
         - https://dns.alidns.com/dns-query
@@ -32,10 +31,6 @@ dns:
     fallback-filter:
         geoip: true
         geoip-code: CN
-        nameserver-policy:
-            - gfw
-        ipcidr:
-            - 240.0.0.0/4
 
 geox-url:
     mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb"
@@ -59,6 +54,8 @@ rules:
     - DOMAIN-KEYWORD,github.com,auto
     - DOMAIN-KEYWORD,githubassets.com,auto
     - DOMAIN-KEYWORD,stackoverflow.com,auto
+    - DOMAIN-KEYWORD,.twimg.com,auto
+    - DOMAIN-KEYWORD,.x.com,auto
     # adx
     - DOMAIN-KEYWORD,admarvel,REJECT
     - DOMAIN-KEYWORD,admaster,REJECT
