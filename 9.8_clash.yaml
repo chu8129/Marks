@@ -52,31 +52,6 @@ rules:
     - DOMAIN-KEYWORD,github.com,auto
     - DOMAIN-KEYWORD,githubassets.com,auto
     - DOMAIN-KEYWORD,stackoverflow.com,auto
-    # adx
-    - DOMAIN-KEYWORD,admarvel,REJECT
-    - DOMAIN-KEYWORD,admaster,REJECT
-    - DOMAIN-KEYWORD,adsage,REJECT
-    - DOMAIN-KEYWORD,adsmogo,REJECT
-    - DOMAIN-KEYWORD,adsrvmedia,REJECT
-    - DOMAIN-KEYWORD,adwords,REJECT
-    - DOMAIN-KEYWORD,adservice,REJECT
-    - DOMAIN-KEYWORD,domob,REJECT
-    - DOMAIN-KEYWORD,duomeng,REJECT
-    - DOMAIN-KEYWORD,dwtrack,REJECT
-    - DOMAIN-KEYWORD,guanggao,REJECT
-    - DOMAIN-KEYWORD,lianmeng,REJECT
-    - DOMAIN-SUFFIX,mmstat.com,REJECT
-    - DOMAIN-KEYWORD,omgmta,REJECT
-    - DOMAIN-KEYWORD,openx,REJECT
-    - DOMAIN-KEYWORD,partnerad,REJECT
-    - DOMAIN-KEYWORD,pingfore,REJECT
-    - DOMAIN-KEYWORD,supersonicads,REJECT
-    - DOMAIN-KEYWORD,uedas,REJECT
-    - DOMAIN-KEYWORD,umeng,REJECT
-    - DOMAIN-KEYWORD,usage,REJECT
-    - DOMAIN-KEYWORD,wlmonitor,REJECT
-    - DOMAIN-KEYWORD,zjtoolbar,REJECT
-    - DOMAIN-SUFFIX,local,DIRECT
     # ips
     - IP-CIDR,127.0.0.0/8,DIRECT
     - IP-CIDR,172.16.0.0/12,DIRECT
@@ -85,9 +60,9 @@ rules:
     - IP-CIDR,17.0.0.0/8,DIRECT
     - IP-CIDR,100.64.0.0/10,DIRECT
     - IP-CIDR,224.0.0.0/4,DIRECT
-    - IP-CIDR6,fe80::/10,DIRECT
     - IP-CIDR,119.28.28.28/32,DIRECT
     - IP-CIDR,182.254.116.0/24,DIRECT
+    - IP-CIDR6,fe80::/10,DIRECT
     # define
     - DOMAIN-SUFFIX,cn,DIRECT
     - DOMAIN-KEYWORD,-cn,DIRECT
