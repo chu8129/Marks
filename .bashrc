@@ -2,7 +2,7 @@ export no_proxy="10.0.0.0/8,127.0.0.0/8,172.16.0.0/12,192.168.0.0/16,localhost"
 # ubuntu
 PS1='\[\033[01;32m\]$(whoami) $(hostname) \[\033[35m\]$(date "+%m%d.%H%M") \[\033[01;34m\]$(pwd) \n \[\033[01;31m\] %> \[\033[00m\]'
 # mac/debian
-# export PS1=$'\e[01;32m %n@%m \e[01;35m %d \e[01;34m %t \n \e[01;31m $> \e[01;00m'
+# export PS1=$'\e[01;32m %n@%m \e[01;35m %/ \e[01;34m %D %T \n \e[01;31m $> \e[01;00m'
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
